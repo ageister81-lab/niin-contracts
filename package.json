@@ -1,6 +1,6 @@
 {
   "name": "@niinid/contracts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Niin API and event contracts: OpenAPI specs, CloudEvent schemas, generated TS types and Zod validators. Change contracts here first.",
   "type": "module",
   "engines": {
@@ -35,7 +35,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test",
-    "prepublishOnly": "pnpm check && pnpm build"
+    "prepublishOnly": "pnpm check && pnpm build",
+    "gen:openapi": "pnpm build && node scripts/gen-openapi.mjs"
   },
   "dependencies": {
     "zod": "4.6.7"
