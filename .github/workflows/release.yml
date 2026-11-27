@@ -28,6 +28,17 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Tag must match package.json version
         run: test "v$(node -p 'require("./package.json").version')" = "${GITHUB_REF_NAME}"
-      - run: pnpm check
-      - run: pnpm build
-      - run: npm publish --provenance --access public
+      - name: Skip if this version is already on npm (e.g. the first, hand-published 0.1.0)
+        id: exists
+        run: |
+          v=$(node -p 'require("./package.json").version')
+          if npm view "@niinid/contracts@${v}" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::@niinid/contracts@${v} is already on npm; nothing to publish."
+          fi
+      - if: steps.exists.outputs.published != 'true'
+        run: pnpm check
+      - if: steps.exists.outputs.published != 'true'
+        run: pnpm build
+      - if: steps.exists.outputs.published != 'true'
+        run: npm publish --provenance --access public
