@@ -2,6 +2,7 @@
   "name": "@niinid/contracts",
   "version": "0.1.0",
   "description": "Niin API and event contracts: OpenAPI specs, CloudEvent schemas, generated TS types and Zod validators. Change contracts here first.",
+  "license": "Apache-2.0",
   "type": "module",
   "engines": {
     "node": ">=26 <27"
@@ -11,8 +12,18 @@
     "type": "git",
     "url": "https://github.com/ageister81-lab/niin-contracts.git"
   },
+  "homepage": "https://github.com/ageister81-lab/niin-contracts#readme",
+  "keywords": [
+    "niin",
+    "upif",
+    "verifiable-credentials",
+    "openapi",
+    "cloudevents"
+  ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
   },
   "exports": {
     ".": {
@@ -27,6 +38,7 @@
     "openapi",
     "events"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",

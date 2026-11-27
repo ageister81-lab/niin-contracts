@@ -12,6 +12,7 @@ jobs:
     uses: ageister81-lab/niin-ci/.github/workflows/node.yml@main
     with:
       docker: false
+      codeql: true
     permissions:
       contents: read
       security-events: write
