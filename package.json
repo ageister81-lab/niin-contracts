@@ -1,6 +1,6 @@
 {
   "name": "@niinid/contracts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Niin API and event contracts: OpenAPI specs, CloudEvent schemas, generated TS types and Zod validators. Change contracts here first.",
   "license": "Apache-2.0",
   "type": "module",

@@ -34,6 +34,7 @@ export const Person = z
   })
   .strict()
   .meta({ id: 'Person' });
+export type Person = z.infer<typeof Person>;
 
 export const Device = z
   .object({
@@ -48,6 +49,7 @@ export const Device = z
   })
   .strict()
   .meta({ id: 'Device' });
+export type Device = z.infer<typeof Device>;
 
 /** RFC 9457 problem details (engineering-standards.md §3). */
 export const Problem = z
@@ -59,6 +61,7 @@ export const Problem = z
     code: z.string().optional(),
   })
   .meta({ id: 'Problem' });
+export type Problem = z.infer<typeof Problem>;
 
 // ---------- requests / responses ----------
 
@@ -68,21 +71,28 @@ export const RegistrationOptionsRequest = z
     contact_email: z.email().max(254).optional(),
   })
   .strict();
+export type RegistrationOptionsRequest = z.infer<typeof RegistrationOptionsRequest>;
 export const CeremonyOptionsResponse = z
   .object({ challenge_id: ChallengeId, options: WebAuthnJson })
   .strict();
+export type CeremonyOptionsResponse = z.infer<typeof CeremonyOptionsResponse>;
 
 export const RegistrationVerifyRequest = z
   .object({ challenge_id: ChallengeId, response: WebAuthnJson, device_name: DeviceName.optional() })
   .strict();
+export type RegistrationVerifyRequest = z.infer<typeof RegistrationVerifyRequest>;
 export const RegistrationVerifyResponse = z.object({ person: Person, device: Device }).strict();
+export type RegistrationVerifyResponse = z.infer<typeof RegistrationVerifyResponse>;
 
 export const AuthenticationVerifyRequest = z
   .object({ challenge_id: ChallengeId, response: WebAuthnJson })
   .strict();
+export type AuthenticationVerifyRequest = z.infer<typeof AuthenticationVerifyRequest>;
 export const SessionResponse = z.object({ person: Person }).strict();
+export type SessionResponse = z.infer<typeof SessionResponse>;
 
 export const DeviceList = z.object({ devices: z.array(Device) }).strict();
+export type DeviceList = z.infer<typeof DeviceList>;
 
 export const AddDeviceVerifyRequest = RegistrationVerifyRequest;
 
