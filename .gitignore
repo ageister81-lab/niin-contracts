@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+
+# Secrets never live in the repo (security.md §7)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*-sa.json
+service-account*.json
+credentials*.json

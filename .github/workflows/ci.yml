@@ -1,0 +1,17 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions: read-all
+
+jobs:
+  node:
+    uses: ageister81-lab/niin-ci/.github/workflows/node.yml@main
+    with:
+      docker: false
+    permissions:
+      contents: read
+      security-events: write
